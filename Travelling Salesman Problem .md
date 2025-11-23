@@ -24,12 +24,57 @@ To write a Python program to find the shortest possible route that visits every 
 ## PYTHON PROGRAM
 
 ```
-ENTER YOUR CODE HERE
+# Python3 program to implement traveling salesman
+# problem using naive approach.
+from sys import maxsize
+from itertools import permutations
+V = 4
+
+# implementation of traveling Salesman Problem
+def travellingSalesmanProblem(graph, s):
+
+	# store all vertex apart from source vertex
+	vertex = []
+	for i in range(V):
+		if i != s:
+			vertex.append(i)
+
+	# store minimum weight Hamiltonian Cycle
+	min_path = maxsize
+	next_permutation=permutations(vertex)
+	for i in next_permutation:
+
+		# store current Path weight(cost)
+		current_pathweight = 0
+
+		# compute current path weight
+		k = s
+		for j in i:
+			current_pathweight += graph[k][j]
+			k = j
+		current_pathweight += graph[k][s]
+
+		# update minimum
+		min_path = min(min_path, current_pathweight)
+		
+	return min_path
+
+
+# Driver Code
+if __name__ == "__main__":
+
+	# matrix representation of graph
+	graph = [[0, 10, 15, 20], [10, 0, 35, 25],
+			[15, 35, 0, 30], [20, 25, 30, 0]]
+	s = int(input())
+	print(travellingSalesmanProblem(graph, s))
+
 ```
 
 ## OUTPUT
-```
-```
+
+<img width="689" height="164" alt="447328820-87cc3f6c-3c42-43a1-9329-721a91453ad7" src="https://github.com/user-attachments/assets/c1cfebd1-754f-4dde-b2a5-91150e1fcc1d" />
+
 
 ##RESULT
-
+Thus, a Python program to find the shortest possible route that visits every city exactly once and returns to the starting point using the Travelling Salesman Problem (TSP) approach are verified.
